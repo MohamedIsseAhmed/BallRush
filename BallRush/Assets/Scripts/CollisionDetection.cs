@@ -11,7 +11,7 @@ public class CollisionDetection : MonoBehaviour
             if (!BallManager.Instance.balls.Contains(other.gameObject.transform))
             {
                 other.GetComponent<SphereCollider>().isTrigger = false;
-                other.gameObject.tag = "Untagged";
+              //  other.gameObject.tag = "Untagged";
                 other.gameObject.AddComponent<CollisionDetection>();
                 //other.gameObject.AddComponent<Rigidbody>();
                 other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
