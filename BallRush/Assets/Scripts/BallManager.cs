@@ -74,7 +74,7 @@ public class BallManager : MonoBehaviour
         Vector3 pos = balls[index].localPosition;
         pos.z += 1;
         ball.localPosition = pos;
-        StartCoroutine(ScalingObjects());
+        StartCoroutine(ScalingBalls());
 
     }
     private void ToVector()
@@ -84,7 +84,7 @@ public class BallManager : MonoBehaviour
             paths[i] = pathsTransforms[i].transform.position;
         }
     }
-    IEnumerator ScalingObjects()
+    IEnumerator ScalingBalls()
     {
         
         for (int i = balls.Count-1;  i >0; i--)
@@ -120,7 +120,10 @@ public class BallManager : MonoBehaviour
             //balls[i].transform.localPosition = Vector3.MoveTowards(balls[i].localPosition, pos, 5 * Time.deltaTime);
         }
     }
-  
+    public void StartScalingCoroutine()
+    {
+        StartCoroutine(ScalingBalls());
+    }
     private IEnumerator  Fly()
     {
         for (int i = balls.Count-1; i>=0; i--)

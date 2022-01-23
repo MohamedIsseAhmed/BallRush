@@ -18,7 +18,7 @@ public class ScoreManager : MonoBehaviour
     {
         InvisibleWall.scoreEvent += InvisibleWall_scoreEvent;
     }
-
+    
     private void InvisibleWall_scoreEvent()
     {
         score++;

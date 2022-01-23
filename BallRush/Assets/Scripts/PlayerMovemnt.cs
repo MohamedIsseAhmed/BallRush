@@ -9,17 +9,29 @@ public class PlayerMovemnt : MonoBehaviour
     [SerializeField] private Transform model;
     [SerializeField] private Vector3 modelVectorOffset;
 
+    private float minXRange = -4f;
+    private float maxXRange = 4f;
+
     private bool hasFinished = false;
     private bool hasDisabledInput;
-    void Start()
+    private Animator modelAnimator;
+    private void Awake()
     {
-        
+        model.GetComponent<Animator>();
     }
+    
 
     private void OnEnable()
     {
         Finish.OnFinished += Finish_OnFinished;
         DisablePlayerInput.OnDisablePlayerInput += DisablePlayerInput_OnDisablePlayerInput;
+        GameOver.OnOver += GameOver_OnOver;
+    }
+
+    private void GameOver_OnOver()
+    {
+        model.localEulerAngles = new Vector3(0, 180, 0);
+        model.GetComponent<Animator>().SetTrigger("Dance");
     }
 
     private void DisablePlayerInput_OnDisablePlayerInput()
@@ -46,7 +58,7 @@ public class PlayerMovemnt : MonoBehaviour
             {
                 if(!hasDisabledInput)
                     Move();
-                model.GetComponent<Animator>().SetTrigger("Running");
+                //modelAnimator.SetTrigger("Running");
 
             }
           
@@ -54,6 +66,7 @@ public class PlayerMovemnt : MonoBehaviour
             {
                 //  model.GetComponent<Animator>().ResetTrigger("Running");
             }
+
         }
        
     }
@@ -84,17 +97,20 @@ public class PlayerMovemnt : MonoBehaviour
             model.localPosition=Vector3.MoveTowards(model.localPosition, clampedVector + modelVectorOffset, 5* Time.deltaTime);
           
             firsBall.localPosition = Vector3.MoveTowards(firsBall.localPosition, clampedVector, Time.deltaTime * 5);
+            if (firsBall.localPosition.x > maxXRange)
+            {
+                firsBall.localPosition = new Vector3(maxXRange, firsBall.localPosition.y, firsBall.localPosition.z);
+                model.localPosition = new Vector3(maxXRange, model.localPosition.y, model.localPosition.z);
+            }
+            if (firsBall.localPosition.x <minXRange)
+            {
+                firsBall.localPosition = new Vector3(minXRange, firsBall.localPosition.y, firsBall.localPosition.z);
+                model.localPosition = new Vector3(minXRange, model.localPosition.y, model.localPosition.z);
+            }
         }
 
-     
 
-        //if(firsBall.localPosition.x > 4)
-        //{
-        //    firsBall.localPosition = new Vector3 (4, firsBall.localPosition.y, firsBall.localPosition.z);  
-        //}
-        //if (firsBall.localPosition.x < -4)
-        //{
-        //    firsBall.localPosition = new Vector3(-4, firsBall.localPosition.y, firsBall.localPosition.z);
-        //}
+    
+
     }
 }

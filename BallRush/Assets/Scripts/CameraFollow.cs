@@ -17,10 +17,10 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private GameObject target;
     private bool finished = false;
     private bool gameOver;
-
+    private Vector3 prevPosoition;
     void Awake()
     {
-        Finish.OnFinished += Finish_OnFinished;
+     
     }
 
     private void Finish_OnFinished()
@@ -42,6 +42,17 @@ public class CameraFollow : MonoBehaviour
         }
        // Folloow();
     }
+    private void OnEnable()
+    {
+        Finish.OnFinished += Finish_OnFinished;
+        GameOver.OnOver += GameOver_OnOver;
+    }
+
+    private void GameOver_OnOver()
+    {
+        StartCoroutine(GoToBack());
+    }
+
     private void Folloow()
     {
         Vector3 direction=player.position-transform.position;
@@ -53,15 +64,24 @@ public class CameraFollow : MonoBehaviour
         transform.rotation=Quaternion.Slerp(transform.rotation, lookDirection,slepValue*Time.deltaTime);
         
     }
-    private IEnumerator Came()
+    private IEnumerator OnGameOverCoroutine()
     {
         //transform.position = Vector3.Lerp(transform.position, transform.position + finishOffset, lerpValue * Time.deltaTime);
-        transform.DOMove(target.transform.position+finishOffset,lerpValue);    
+        prevPosoition = transform.position;
+        transform.DOMove(target.transform.position+finishOffset,lerpValue);
         yield return null;
+
+
     }
     IEnumerator FinishCam()
     {
-        yield return StartCoroutine(Came());
+        yield return StartCoroutine(OnGameOverCoroutine());
         gameOver = false;
+    }
+    private IEnumerator GoToBack()
+    {
+        yield return new WaitForSeconds(4f);
+        transform.DOMove(prevPosoition , lerpValue);
+      
     }
 }
