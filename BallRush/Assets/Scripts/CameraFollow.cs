@@ -13,15 +13,13 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private float slepValue;
     [SerializeField] private Vector3 finishOffset;
     [SerializeField] private float y;
+    [SerializeField] private float timeToGoBack = 4f;
 
     [SerializeField] private GameObject target;
     private bool finished = false;
     private bool gameOver;
     private Vector3 prevPosoition;
-    void Awake()
-    {
-     
-    }
+  
 
     private void Finish_OnFinished()
     {
@@ -52,7 +50,7 @@ public class CameraFollow : MonoBehaviour
     {
         StartCoroutine(GoToBack());
     }
-
+    //Anather version Of Following
     private void Folloow()
     {
         Vector3 direction=player.position-transform.position;
@@ -80,7 +78,7 @@ public class CameraFollow : MonoBehaviour
     }
     private IEnumerator GoToBack()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(timeToGoBack);
         transform.DOMove(prevPosoition , lerpValue);
       
     }

@@ -14,7 +14,7 @@ public class BallManager : MonoBehaviour
     [SerializeField] private float scaleFactor;
     [SerializeField] private float ballSlerpValue;
     [SerializeField] private float moveToOriginXvalue;
-    [SerializeField] private float ballWaitingTime;
+    [SerializeField] private float ballWaitingTime;   
     [SerializeField] float moveToPreviousBallXPosition = 0.25f;
     [SerializeField] private GameObject ballNet;
     [SerializeField] private Vector3 ballNetOffset;

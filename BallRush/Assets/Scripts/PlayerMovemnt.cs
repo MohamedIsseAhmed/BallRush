@@ -8,9 +8,10 @@ public class PlayerMovemnt : MonoBehaviour
     [SerializeField] float speed = 10;
     [SerializeField] private Transform model;
     [SerializeField] private Vector3 modelVectorOffset;
-
+    [SerializeField] private float increasedSpeed = 1.75f;
     private float minXRange = -4f;
     private float maxXRange = 4f;
+    private float rotationAngle = 180f;
 
     private bool hasFinished = false;
     private bool hasDisabledInput;
@@ -30,14 +31,14 @@ public class PlayerMovemnt : MonoBehaviour
 
     private void GameOver_OnOver()
     {
-        model.localEulerAngles = new Vector3(0, 180, 0);
+        model.localEulerAngles = new Vector3(0, rotationAngle, 0);
         model.GetComponent<Animator>().SetTrigger("Dance");
     }
 
     private void DisablePlayerInput_OnDisablePlayerInput()
     {
         hasDisabledInput = true;
-        speed += 1.75f;
+        speed += increasedSpeed;
     }
 
     private void Finish_OnFinished()

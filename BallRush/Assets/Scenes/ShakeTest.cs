@@ -8,12 +8,7 @@ public class ShakeTest : MonoBehaviour
     public GameObject ground;
    public float strengh;
    public float radius;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+ 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
