@@ -59,14 +59,10 @@ public class PlayerMovemnt : MonoBehaviour
             {
                 if(!hasDisabledInput)
                     Move();
-                //modelAnimator.SetTrigger("Running");
+               
 
             }
-          
-            if (Input.GetMouseButtonUp(1))
-            {
-                //  model.GetComponent<Animator>().ResetTrigger("Running");
-            }
+         
 
         }
        
@@ -88,12 +84,10 @@ public class PlayerMovemnt : MonoBehaviour
             Transform firsBall = BallManager.Instance.balls[0];
             Vector3 clampedVector = hit.point;
             Vector3 modelVector = hit.point;
-            // clampedVector.x = Mathf.Clamp(clampedVector.x, -4, 4);
+           
            clampedVector.y = firsBall.localPosition.y;
            clampedVector.z = firsBall.localPosition.z;
 
-            //modelVector.y=model.localPosition.y;
-            //modelVector.z=model.localPosition.z;
 
             model.localPosition=Vector3.MoveTowards(model.localPosition, clampedVector + modelVectorOffset, 5* Time.deltaTime);
           

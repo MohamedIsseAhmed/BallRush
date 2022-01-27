@@ -107,7 +107,7 @@ public class BallManager : MonoBehaviour
             Vector3 pos = balls[i].transform.localPosition;
             pos.x = balls[i - 1].transform.localPosition.x;
             balls[i].transform.DOLocalMove(pos, moveToPreviousBallXPosition);
-            //balls[i].transform.localPosition = Vector3.MoveTowards(balls[i].transform.localPosition, pos, 5 * Time.deltaTime);
+           
         }
     }
     public void MoveToOrigin()
@@ -117,7 +117,7 @@ public class BallManager : MonoBehaviour
             Vector3 pos = balls[i].transform.localPosition;
             pos.x = balls[0].transform.localPosition.x;
             balls[i].transform.DOLocalMove(pos,moveToOriginXvalue);
-            //balls[i].transform.localPosition = Vector3.MoveTowards(balls[i].localPosition, pos, 5 * Time.deltaTime);
+           
         }
     }
     public void StartScalingCoroutine()
@@ -130,9 +130,7 @@ public class BallManager : MonoBehaviour
         {
             balls[i].transform.parent = null;
             Vector3 targetPos = ballNet.transform.localPosition - balls[i].transform.position;
-          balls[i].transform.DOMove(ballNet.transform.localPosition, ballSlerpValue); /*= Vector3.Lerp(balls[i].transform.position, net.transform.localPosition, ballSlerpValue * Time.deltaTime);*/
-
-            // balls[i].transform.position = Vector3.Slerp(balls[i].transform.position, ballNet.transform.localPosition+ballNetOffset, ballSlerpValue * Time.deltaTime);
+            balls[i].transform.DOMove(ballNet.transform.localPosition, ballSlerpValue); 
 
             yield return new WaitForSeconds(waitTime);
         }

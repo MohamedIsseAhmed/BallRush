@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 public class ShakeTest : MonoBehaviour
 {
+    //For Testing Shaking, it is not in the Game
    public float shakeTime=0.2f;
     public GameObject ground;
    public float strengh;

@@ -9,10 +9,7 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
 
     private int score;
-    void Start()
-    {
-        
-    }
+  
 
     private void OnEnable()
     {

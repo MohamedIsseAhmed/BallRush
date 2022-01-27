@@ -32,7 +32,7 @@ public class GameOver : MonoBehaviour
         Vector3 targetPosition=Camera.main.ScreenToWorldPoint(levelComplatefText.transform.localPosition);
         GameObject newWinParticle=Instantiate(winParticle);
         newWinParticle.transform.position = targetPosition+winParticleOffset;
-        //Destroy(winParticle,3);
+       
 
         OnOver?.Invoke();
     }

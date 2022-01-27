@@ -28,7 +28,7 @@ public class CameraFollow : MonoBehaviour
        
     }
 
-    // Update is called once per frame
+    
     void LateUpdate()
     {
         if(!gameOver && !finished)
@@ -64,7 +64,7 @@ public class CameraFollow : MonoBehaviour
     }
     private IEnumerator OnGameOverCoroutine()
     {
-        //transform.position = Vector3.Lerp(transform.position, transform.position + finishOffset, lerpValue * Time.deltaTime);
+       
         prevPosoition = transform.position;
         transform.DOMove(target.transform.position+finishOffset,lerpValue);
         yield return null;
